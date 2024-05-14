@@ -7,7 +7,7 @@
         <p class="text-2xl font-semibold text-center">Pinia Task</p>
       </header>
       <!-- Add new task -->
-      <div>
+      <div class="text-center">
         <TaskForm />
       </div>
       <!-- nav -->
