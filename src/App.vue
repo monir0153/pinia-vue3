@@ -15,9 +15,11 @@
         <button class="px-3 py-2 bg-slate-700 m-3 rounded-lg" @click="filter = 'all'">all task</button>
         <button class="px-3 py-2 bg-slate-700 m-3 rounded-lg" @click="filter = 'favs'">Favorite</button>
       </nav>
+      <!-- loading -->
       <!-- Task List -->
       <div class="text-white w-5/12 mx-auto " v-if="filter === 'all'">
         <p>you have {{ taskStore.totalCount }} task left to do</p>
+        <p class="text-center text-white text-5xl" v-if="taskStore.loading">loading task...</p>
         <div v-for="task in taskStore.tasks" :key="task.id" class="py-5">
           <TaskDetails :task="task"/>
         </div>
@@ -44,8 +46,9 @@ import TaskForm from './components/TaskForm.vue';
         TaskForm
     },
     setup() {
-      const taskStore = useTaskStore()
-    const filter = ref('all')
+      const taskStore = useTaskStore();
+      taskStore.getTasks();
+      const filter = ref('all')
       return {taskStore, filter}
     }
   }
